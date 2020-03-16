@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.wildfly.plugins:wildfly-plugin-core:1.1.0.Alpha11">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/wildfly/plugins/wildfly-plugin-core/1.1.0.Alpha11/wildfly-plugin-core-1.1.0.Alpha11.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/wildfly/plugins/wildfly-plugin-core/1.1.0.Alpha11/wildfly-plugin-core-1.1.0.Alpha11-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/wildfly/plugins/wildfly-plugin-core/1.1.0.Alpha11/wildfly-plugin-core-1.1.0.Alpha11-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

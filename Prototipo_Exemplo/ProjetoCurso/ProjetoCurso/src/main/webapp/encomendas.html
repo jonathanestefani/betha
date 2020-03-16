@@ -1,0 +1,132 @@
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <h1 class="page-header">Encomenda</h1>
+    <div id="paginaBuscar"></div>
+    <div class="panel">
+        <div id="msgErro"></div>
+        <div class="row panel-title text-right">
+            <span style="float: left; padding-left: 24px;" class="left">Quantidade: <b id="qtdRegistros"></b></span>
+            <button id="btnAdicionar" type="button" class="btn btn-mg btn-success" data-toggle="modal" data-target=".bd-example-modal-lg">Adicionar</button>
+        </div>
+        <div class="table-responsive">
+            <table id="gerenciar" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th id="#">ID</th>
+                        <th>Cliente</th>
+                        <th>Preço Final</th>
+                        <th>Observação</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody style="display: none;" id="dadosTabela">
+                    <tr>
+                        <td>{{id}}</td>
+                        <td>{{nome_cliente}}</td>
+                        <td>{{preco}}</td>
+                        <td>{{observacao}}</td>
+                        <td>
+                            <a onclick="DadosRecurso().edit({{id}}); ctrl.editarItens({{id}});" href="javascript:void(0)" data-toggle="modal" data-target=".bd-example-modal-lg"><span class="glyphicon glyphicon-pencil"></span></a>
+                            <a onclick="DadosRecurso().remove('encomenda', {{id}})" href="javascript:void(0)"><span class="glyphicon glyphicon-remove"></span></a>
+                        </td>
+                    </tr>
+                </tbody>
+                <tbody id="nenhumRegistro"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div id="cadastro" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div id="divForm" class="row">
+                <div style="margin: 0;" id="inserir_produto" class="col-sm-9 col-sm-offset-3 col-md-12 main">
+                    <h2 id="statusCadastro" class="page-header">Inserindo Produto</h2>
+                    <div id="msg"></div>
+
+                    <form class="form-horizontal" name="">
+                        <input type="hidden" name="id" />
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="nome_cliente">Cliente</label>
+                            <div class="col-sm-10">
+                                <input id="idcliente" class="form-control" type="hidden" name="idcliente" />
+                                <input id="nome_cliente" class="form-control" type="text" name="nome_cliente" placeholder="Digite o nome do cliente" />
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="preco">Preço Final</label>
+                            <div class="col-sm-4">
+                                <input id="preco" class="form-control jsPreco" type="text" name="preco" placeholder="Digite o valor da encomenda" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="observacao">Observação</label>
+                            <div class="col-sm-10">
+                                <input id="observacao" class="form-control" type="text" name="observacao" placeholder="Digite a observação" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div id="cadastroItens" class="form-group-sm col-sm-5">
+                                <h4>Itens da Encomenda</h4> 
+                                
+                                <div id="formulario-produtos">
+                                    <input type="hidden" name="produtos[{{idproduto}}]" value="{{quantidade}}" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-sm-3" for="nome_produto">Produto</label>
+                                    <div class="col-sm-9">
+                                        <input id="idproduto" class="form-control" type="hidden" name="idproduto" />
+                                        <input id="preco_produto" class="form-control" type="hidden" name="preco_produto" />
+                                        <input id="nome_produto" class="form-control" type="text" name="nome_produto" placeholder="Digite o nome do produto" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-3" for="produto_quantidade">Quantidade</label>
+                                    <div class="col-sm-4">
+                                        <input id="produto_quantidade" maxlength="2" class="form-control" type="text" name="produto_quantidade" placeholder="Quantidade" />
+                                    </div>                                        
+                                </div>
+                                <div class="form-group text-right">
+                                    <button id="btnAdd" type="button" class="glyphicon glyphicon-plus btn btn-xs btn-primary" style="margin-right: 14px;">  Adicionar</button>
+                                </div>
+                            </div>
+                            <table id="listaEncomendas" class="table">     
+                                <thead> 
+                                    <tr> 
+                                        <th>#</th> 
+                                        <th>Produto</th> 
+                                        <th class="text-center">Quantidade</th> 
+                                        <th class="text-center">Total</th> 
+                                        <th></th>
+                                    </tr> 
+                                </thead> 
+                                <tbody id="dadosTabelaItens"> 
+                                    <tr id="{{id}}"> 
+                                        <th scope="row">{{id}}</th> 
+                                        <td>{{nome_produto}}</td> 
+                                        <td id="qtd_{{idproduto}}" class="text-center jsUpdateQtd">{{quantidade}}</td> 
+                                        <td class="text-center" id="tot_{{idproduto}}">{{total}}</td> 
+                                        <td>
+                                            <a onclick="ctrl.removerItem({{idproduto}})" href="javascript:void(0)"><span class="glyphicon glyphicon-remove"></span></a>
+                                        </td>
+                                    </tr> 
+                                </tbody> 
+                                <tbody id="nenhumRegistroItens"></tbody>
+                            </table>
+
+                        </div>
+
+                        <div class="form-group text-right">
+                            <button id="btnSalvar" type="button" class="btn btn-mg btn-success">Salvar</button>
+                            <button type="reset" class="btn btn-danger btnCancelar" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,116 @@
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <h1 class="page-header">Clientes</h1>
+    <div id="paginaBuscar"></div>
+    <div class="panel">
+        <div id="msgErro"></div>
+        <div class="row panel-title text-right">
+            <span style="float: left; padding-left: 24px;" class="left">Quantidade: <b id="qtdRegistros"></b></span>
+            <button id="btnAdicionar" type="button" class="btn btn-mg btn-success" data-toggle="modal" data-target=".bd-example-modal-lg">Adicionar</button>
+        </div>
+        <div class="table-responsive">
+            <table id="gerenciar" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th id="#">ID</th>
+                        <th>Nome</th>
+                        <th>Telefone</th>
+                        <th>Celular</th>
+                        <th>E-mail</th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody style="display: none;" id="dadosTabela">
+                    <tr>
+                        <td>{{id}}</td>
+                        <td>{{nome}}</td>
+                        <td>{{telefone}}</td>
+                        <td>{{celular}}</td>
+                        <td>{{email}}</td>
+                        <td>
+                            <a onclick="DadosRecurso().edit({{id}})" href="javascript:void(0)" data-toggle="modal" data-target=".bd-example-modal-lg"><span class="glyphicon glyphicon-pencil"></span></a>
+                            <a onclick="DadosRecurso().remove('cliente', {{id}})" href="javascript:void(0)"><span class="glyphicon glyphicon-remove"></span></a>
+                        </td>
+                    </tr>
+                </tbody>
+                <tbody id="nenhumRegistro"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div id="cadastro" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div id="divForm" class="row">
+                <div id="inserir_cliente" class="col-sm-9 col-sm-offset-3 col-md-12 main">
+                    <h2 id="statusCadastro" class="page-header">Inserindo Produto</h2>
+                    <div id="msg"></div>
+                    <form class="form-horizontal" name="">
+                        <input type="hidden" name="id" />
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="nome">Nome</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" type="text" name="nome" placeholder="Digite o nome do cliente" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="telefone">Telefone</label>
+                            <div class="col-sm-4">
+                                <input class="jsPhone form-control" type="text" name="telefone" placeholder="Digite o telefone do cliente" />
+                            </div>
+                            <label class="control-label col-sm-2" for="celular">Celular</label>
+                            <div class="col-sm-4">
+                                <input class="jsPhone form-control" type="text" name="celular" placeholder="Digite o celular do cliente" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="endereco" class="control-label col-sm-2">Endereço</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="endereco" class="form-control" placeholder="Digite o endereço do cliente" />
+                            </div>
+                            <label for="cidade" class="control-label col-sm-2">Cidade</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="cidade" class="form-control" placeholder="Digite a cidade do cliente" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="bairro" class="control-label col-sm-2">Bairro</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="bairro" class="form-control" placeholder="Digite o bairro do cliente" />
+                            </div>
+                            <label for="estado" class="control-label col-sm-2">Estado</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="estado" class="form-control" placeholder="Digite o estado do cliente" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="cep" class="control-label col-sm-2">Cep</label>
+                            <div class="col-sm-4">
+                                <input type="text" name="cep" class="jsCep form-control" placeholder="Digite o cep do cliente" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="email">Email</label>
+                            <div class="input-group col-sm-6" style="padding-left: 15px;">
+                                <span class="input-group-addon" id="basic-addon1">@</span>
+                                <input class="form-control" name="email" placeholder="Digite o e-mail do cliente" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="email">Observação</label>
+                            <div class="col-sm-10">
+                                <input id="observacao" class="form-control" type="text" name="observacao" placeholder="Digite a observação" />
+                            </div>
+                        </div>
+                        <div class="form-group text-right">
+                            <button id="btnSalvar" type="button" class="btn btn-mg btn-success">Salvar</button>
+                            <button type="reset" class="btn btn-danger btnCancelar" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
